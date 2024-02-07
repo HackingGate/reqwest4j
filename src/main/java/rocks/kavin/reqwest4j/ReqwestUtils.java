@@ -11,7 +11,7 @@ public class ReqwestUtils {
     static {
         String arch = switch (System.getProperty("os.arch")) {
             case "aarch64" -> "aarch64";
-            case "amd64" -> "x86_64";
+            case "amd64", "x86_64" -> "x86_64";
             default -> throw new RuntimeException("Unsupported architecture");
         };
 
@@ -26,7 +26,7 @@ public class ReqwestUtils {
         } else if (os.contains("linux")) {
             extension = ".so";
             native_folder = "linux";
-        } else if (os.contains("darwin")) {
+        } else if (os.contains("darwin") || os.contains("mac os x")) {
             extension = ".dylib";
             native_folder = "darwin"; // or apple?
         } else {
